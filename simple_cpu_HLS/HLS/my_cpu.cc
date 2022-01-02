@@ -50,17 +50,17 @@ void cpu(insn_T i_mem[INSN_SIZE], data_T d_mem[DATA_SIZE]) {
 		  finish = true;
 		} else if (opcode == OPCODE_WR_IMM) {
 		  dst = (insn >> 3) & 0xF; 		//insn.immediate.dst;
-		  imm = (insn >> 7) & 0xFFFF; 	//insn.immediate.imm;
+		  imm = (insn >> 7) & 0xFFFF; 		//insn.immediate.imm;
 		} else if (opcode == OPCODE_LOAD) {
 		  dst = (insn >> 3) & 0xF; 		//insn.memory.reg;
-		  src_0 = (insn >> 7) & 0xF; 	//insn.memory.addr;
+		  src_0 = (insn >> 7) & 0xF; 		//insn.memory.addr;
 		} else if (opcode == OPCODE_STORE) {
 		  src_0 = (insn >> 3) & 0xF; 	//insn.memory.addr;
 		  src_1 = (insn >> 7) & 0xF; 	//insn.memory.reg;
 		} else if (opcode == OPCODE_BEQ || opcode == OPCODE_BNE) {
 			src_0 = (insn >> 3) & 0xF;	//insn.branch.src_0;
 			src_1 = (insn >> 7) & 0xF; 	//insn.branch.src_1;
-			new_pc = (insn >> 11) & 0x3FF; //insn.branch.new_pc;
+			new_pc = (insn >> 11) & 0x3FF; 	//insn.branch.new_pc;
 		} else if (opcode == OPCODE_ADD) {
 		  dst = (insn >> 3) & 0xF; 		//insn.binary.dst;
 		  src_0 = (insn >> 7) & 0xF; 	//insn.binary.src_0;
