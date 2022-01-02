@@ -80,12 +80,12 @@ void cpu(insn_T i_mem[INSN_SIZE], data_T d_mem[DATA_SIZE]) {
 		}
 
 		// Branch handling code (If branch is taken, exit the pipeline)
-	    if ((opcode == OPCODE_BEQ) && (arg_0 == arg_1))
-	    	//pc = new_pc;
-	    	finish = true;
-	    if ((opcode == OPCODE_BNE) && (arg_0 != arg_1))
-	    	//pc = new_pc;
-	    	finish = true;
+	        if ((opcode == OPCODE_BEQ) && (arg_0 == arg_1))
+	    	   //pc = new_pc;
+	    	   finish = true;
+	       if ((opcode == OPCODE_BNE) && (arg_0 != arg_1))
+	       	   //pc = new_pc;
+	    	   finish = true;
 
 		// Memory load/store
 		if (opcode == OPCODE_LOAD) {
