@@ -56,7 +56,10 @@ void cpu(arch_t mem[MEM_SIZE], volatile strb_t* pstrb) {
 	// immB
 	immB = ( immS(31,12), insn(7,7), immS(10,1), ((ap_uint<1>) 0) );
 	// immJ
-	immJ = ( insn(31,31), insn(31,31), insn(31,31), insn(19,12), insn(20,20), insn(30,21), ((ap_uint<1>) 0) );
+	immJ = ( insn(31,31), insn(31,31), insn(31,31), insn(31,31),
+		 insn(31,31), insn(31,31), insn(31,31), insn(31,31),
+		 insn(31,31), insn(31,31), insn(31,31), insn(31,31),
+ 		 insn(19,12), insn(20,20), insn(30,21), ((ap_uint<1>) 0) );
 	// immU
 	immU = ( insn(31,12), ((ap_uint<12>) 0) );
 
@@ -89,7 +92,7 @@ void cpu(arch_t mem[MEM_SIZE], volatile strb_t* pstrb) {
 
 	// ALU
 	arch_t src1 = reg_file[rs1];
-	arch_t src2 = (opcode == OPCODE_IA) ? imm : reg_file[rs2];
+	arch_t src2 = ((opcode != OPCODE_R) & (opcode != OPCODE_S)) ? imm : reg_file[rs2];
 	arch_t res = 0;
 
 	// Memory load/store
