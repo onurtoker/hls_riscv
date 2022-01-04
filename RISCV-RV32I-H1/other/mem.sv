@@ -15,15 +15,13 @@ logic    [9:0] read_addr;
 always @(posedge clk) 
 begin
     if (we) begin
-        if (addr < 255) begin
-            if (wstrb[0]) ram[addr][ 7: 0] <= din[ 7: 0];
-            if (wstrb[1]) ram[addr][15: 8] <= din[15: 8];
-            if (wstrb[2]) ram[addr][23:16] <= din[23:16];
-            if (wstrb[3]) ram[addr][31:24] <= din[31:24];
-        end
+        if (wstrb[0]) ram[addr][ 7: 0] <= din[ 7: 0];
+        if (wstrb[1]) ram[addr][15: 8] <= din[15: 8];
+        if (wstrb[2]) ram[addr][23:16] <= din[23:16];
+        if (wstrb[3]) ram[addr][31:24] <= din[31:24];
         /* add memory-mapped IO here */
         // Simple output device, print the LSB to console 
-        else
+        if (addr == 255)
             $write("%x,", din[7:0]);    
     end
 
